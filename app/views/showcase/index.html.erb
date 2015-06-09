@@ -2,8 +2,6 @@
   <div class="col-lg-3">
     <%= image_tag  p.image %>
     <h4 class="text-center"><%= p.title %></h4>
-    <p class="text-center">
-      <button class="btn btn-primary">R$ <%= format_price p.price %></button>
-    </p>
+    <%= button_to "$ #{format_price(p.price)}", checkout_path, { form_class: "text-center", class: "btn btn-primary", title: "purchase", params: { product_id:  p.id } } %>
   </div>
 <% end %>

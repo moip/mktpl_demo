@@ -1,0 +1,35 @@
+<h2>Checkout</h2>
+
+<div class="col-lg-8">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @checkout.product.title %></td>
+        <td>$<%= format_price @checkout.product.price %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Customer</h4>
+
+  <%= form_for @checkout, url: checkout_create_path do |f| %>
+    <%= f.hidden_field :product_id %>
+    <div class="form-group">
+      <%= f.text_field :customer_name, class: "form-control", placeholder: "Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :customer_email, class: "form-control", placeholder: "Email", type: "email" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Order", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+</div>

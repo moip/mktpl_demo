@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/moip/moip-sdk-ruby.git
+  revision: d224505d4ec8c4e278c8068b21061fc783636b49
+  specs:
+    moip2 (0.0.9)
+      httparty
+      recursive-open-struct
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -69,6 +77,9 @@ GEM
       i18n (~> 0.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
@@ -86,6 +97,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     rack (1.6.1)
@@ -118,6 +130,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    recursive-open-struct (0.6.4)
     rspec-core (3.2.3)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.1)
@@ -190,6 +203,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  moip2!
   rails (= 4.2.1)
   rspec-rails
   sass-rails (~> 5.0)
