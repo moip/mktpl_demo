@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Checkouts", type: :feature do
-  let!(:product) { FactoryGirl.create :product, merchant: FactoryGirl.create(:merchant) }
+  let(:merchant) { FactoryGirl.create :merchant, moip_token: "eqyweab28moi8nn2okqwgpemmahj13v" }
+  let!(:product) { FactoryGirl.create :product, merchant: merchant }
   scenario "checkout an item" do
     visit "/"
     click_button "purchase"

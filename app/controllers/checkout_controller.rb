@@ -4,7 +4,6 @@ class CheckoutController < ApplicationController
   end
 
   def create
-    puts checkout_params
     @checkout = CheckoutProcess.new(checkout_params)
     @checkout.process
     if @checkout.success?
