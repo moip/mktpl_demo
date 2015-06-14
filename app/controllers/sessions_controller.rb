@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     @merchant.save
     puts @merchant.inspect
     session[:current_user] = @merchant
+    flash[:info] = "User logged in: #{@merchant.moip_id}"
     redirect_to '/'
   end
 
