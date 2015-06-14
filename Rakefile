@@ -7,8 +7,6 @@ Rails.application.load_tasks
 
 task :populate_db => :environment do
   Merchant.all.each do |m|
-    10.times do
-      Product.create title: Faker::Commerce.product_name, image: Faker::Avatar.image, price: (Faker::Commerce.price * 100).to_i, merchant: m
-    end
+    Product.create title: Faker::Commerce.product_name, image: Faker::Avatar.image, price: (Faker::Commerce.price * 100).to_i, merchant: m
   end
 end

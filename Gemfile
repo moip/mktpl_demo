@@ -36,6 +36,7 @@ gem "twitter-bootstrap-rails"
 
 gem "moip2"
 gem "oauth2"
+gem "omniauth-moip", github: "moip/omniauth-moip"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
