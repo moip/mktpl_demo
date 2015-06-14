@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   post "checkout" => "checkout#new"
   post "checkout/create" => "checkout#create"
+  post "checkout/create_credit_card" => "checkout#create_credit_card"
 
   get '/auth/moip/callback', to: 'sessions#create'
 

@@ -28,8 +28,12 @@ RSpec.feature CheckoutProcess, type: :model do
 
     it { expect(checkout).to be_success }
 
-    it "return link to moip checkout" do
+    it "return link to moip checkout paying with credit card" do
       expect(checkout.credit_card).to_not be_nil
+    end
+
+    it "return link to moip checkout paying with boleto" do
+      expect(checkout.boleto).to_not be_nil
     end
   end
 end

@@ -1,9 +1,10 @@
 class CheckoutProcess
   include ActiveModel::Model
 
-  attr_accessor :product_id, :customer_name, :customer_email
+  attr_accessor :product_id, :customer_name, :customer_email,
+    :hash, :holder_name, :holder_birthdate, :holder_document
 
-  attr_reader :order
+  attr_reader :order, :payment
 
   validates_presence_of :product_id, :customer_name, :customer_email
 
@@ -22,8 +23,6 @@ class CheckoutProcess
   def process
     return unless valid?
 
-    auth = Moip2::Auth::OAuth.new(merchant.moip_token)
-    client = Moip2::Client.new(:sandbox, auth)
     @order = Moip2::OrderApi.new(client).create(
       {
         own_id: generate_own_id,
@@ -44,12 +43,50 @@ class CheckoutProcess
     )
   end
 
+  def process_cc
+    process
+
+    @payment = Moip2::PaymentApi.new(client).create(order.id,
+      {
+        installment_count: 1,
+        funding_instrument: {
+          method: "CREDIT_CARD",
+          credit_card: {
+            hash: hash,
+            holder: {
+              fullname: holder_name,
+              birthdate: holder_birthdate,
+              tax_document: {
+                type: "CPF",
+                number: holder_document,
+              },
+            }
+          }
+        }
+      }
+    )
+  end
+
   def success?
     valid? && order.success?
   end
 
   def credit_card
     order._links.checkout.pay_credit_card.redirect_href
+  end
+
+  def boleto
+    order._links.checkout.pay_boleto.redirect_href
+  end
+
+  def encryption_key
+    Moip2::KeysApi.new(client).show.keys.encryption
+  end
+
+  private
+  def client
+    auth = Moip2::Auth::OAuth.new(merchant.moip_token)
+    client = Moip2::Client.new(:sandbox, auth)
   end
 
 end

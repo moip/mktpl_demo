@@ -17,7 +17,9 @@
     </tbody>
   </table>
 
-  <h4>Customer</h4>
+  <hr />
+
+  <h4>Boleto</h4>
 
   <%= form_for @checkout, url: checkout_create_path do |f| %>
     <%= f.hidden_field :product_id %>
@@ -28,8 +30,73 @@
       <%= f.text_field :customer_email, class: "form-control", placeholder: "Email", type: "email" %>
     </div>
     <div class="form-group">
-      <%= f.submit "Order", class: "btn btn-success" %>
+      <%= f.submit "Pay", class: "btn btn-success" %>
     </div>
   <% end %>
 
+  <hr />
+
+  <h4>Credit Card</h4>
+
+  <%= form_for @checkout, url: checkout_create_credit_card_path do |f| %>
+    <%= f.hidden_field :product_id %>
+    <%= f.hidden_field :hash, id: "hash" %>
+    <%= f.text_area :encryption_key, { style: "display:none", id: "public_key" } %>
+    <div class="form-group">
+      <%= f.text_field :customer_name, class: "form-control", placeholder: "Nome" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :customer_email, class: "form-control", placeholder: "Email", type: "email" %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag "cc_number", "", class: "form-control", placeholder: "Number", maxlength: 16 %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag "cc_cvc", "", class: "form-control", placeholder: "CVC", maxlength: 3 %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag "cc_exp_month", "", class: "form-control", placeholder: "MM", maxlength: 2 %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag "cc_exp_year", "", class: "form-control", placeholder: "YY", maxlength: 2 %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :holder_name, class: "form-control", placeholder: "Holder Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :holder_birthdate, class: "form-control", placeholder: "Holder Birthdate" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :holder_document, class: "form-control", placeholder: "CPF", maxlength: 11 %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Pay", class: "btn btn-success", id: "pay_cc" %>
+    </div>
+  <% end %>
+
+  <!-- Import javascript -->
+  <script type="text/javascript" src="//assets.moip.com.br/integration/moip.min.js"></script>
+
+  <script type="text/javascript">
+$(document).ready(function() {
+  $("#pay_cc").click(function() {
+    var cc = new Moip.CreditCard({
+      number  : $("#cc_number").val(),
+      cvc     : $("#cc_cvc").val(),
+      expMonth: $("#cc_exp_month").val(),
+      expYear : $("#cc_exp_year").val(),
+      pubKey  : $("#public_key").val()
+    });
+    console.log(cc);
+    if(cc.isValid()){
+      $("#hash").val(cc.hash());
+    }
+    else{
+      $("#encrypted_value").val('');
+      alert('Invalid credit card. Verify parameters: number, cvc, expiration Month, expiration Year');
+      return false; // Don't submit the form
+    }
+  });
+});
+  </script>
 </div>
