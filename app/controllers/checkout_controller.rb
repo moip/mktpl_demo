@@ -14,6 +14,9 @@ class CheckoutController < ApplicationController
     @checkout = CheckoutProcess.new(checkout_cc_params)
     @checkout.process_cc
     puts @checkout.payment
+
+    flash[:info] = "Pagamento realizado: #{@checkout.payment.id}"
+    redirect_to root_path
   end
 
   private

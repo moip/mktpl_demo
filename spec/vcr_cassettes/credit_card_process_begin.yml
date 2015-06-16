@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://test.moip.com.br/v2/keys
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth k2xygi29niy8sag0m15s2cb4wbd74np
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 16 Jun 2015 00:03:01 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '599'
+      Connection:
+      - keep-alive
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"keys":{"basicAuth":{"secret":"VGBIA8IJTQQHURHIIWHQI2NWYNTOITPC6AUJLZB0","token":"2NPIZYEGZPGR2WRSYVFVYR6QPSNKGJXI"},"encryption":"-----BEGIN
+        PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjPCt6RtKJwHCOMfu7PU\/\nhNIv7zATi434njpLqSlKt6pjEpjR351B98EYHg5qsL2CraWHTUuHOP8+\/1vlc7gh\nlOo5894YQUo4LaFkvgppB2g3ndfiJ2vQSnGXIGxLa58l2RkBw3BNvWFV8Voi55XA\nULA5+xht+QnEKIu+YxUq6r6acgygGvFUEPMOx+yQAB+xNeEZ+T22wXKuLsOEPTgH\nIeXwh8Oe1r2vaLrAEI\/OzGwvgvYiHNSX8u0QpwltWylp0Ym6OyRFWAuhzYHP5+D9\n9b8MWiQpUwUIM4poNTkurNcglmHniIoARzTY1wqnn3zmRqgNMXOe2iDGJl7mjLGO\n\/QIDAQAB\n-----END
+        PUBLIC KEY-----\n"}}'
+    http_version: 
+  recorded_at: Tue, 16 Jun 2015 00:03:02 GMT
+recorded_with: VCR 2.9.3

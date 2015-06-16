@@ -19,7 +19,7 @@
 
   <hr />
 
-  <h4>Boleto</h4>
+  <h4>Customer</h4>
 
   <%= form_for @checkout, url: checkout_create_path do |f| %>
     <%= f.hidden_field :product_id %>
@@ -78,6 +78,13 @@
   <script type="text/javascript" src="//assets.moip.com.br/integration/moip.min.js"></script>
 
   <script type="text/javascript">
+// Javascript
+// cc_number
+// cc_cvc
+// cc_exp_month
+// cc_exp_year
+// public_key
+
 $(document).ready(function() {
   $("#pay_cc").click(function() {
     var cc = new Moip.CreditCard({
