@@ -23,52 +23,17 @@ class CheckoutProcess
   def process
     return unless valid?
 
-    @order = api.order.create(
-      {
-        own_id: generate_own_id,
-        items: [
-          {
-            product: product.title,
-            quantity: 1,
-            detail: product.title,
-            price: product.price
-          }
-        ],
-        customer: {
-          own_id: "customer_#{generate_own_id}",
-          fullname: customer_name,
-          email: customer_email,
-        }
-      }
-    )
+    # Create Moip Order
   end
 
   def boleto
-    order._links.checkout.pay_boleto.redirect_href
+    # Redirect to Boleto URL
   end
 
   def process_cc
     process
 
-    @payment = api.payment.create(order.id,
-      {
-        installment_count: 1,
-        funding_instrument: {
-          method: "CREDIT_CARD",
-          credit_card: {
-            hash: hash,
-            holder: {
-              fullname: holder_name,
-              birthdate: holder_birthdate,
-              tax_document: {
-                type: "CPF",
-                number: holder_document,
-              },
-            }
-          }
-        }
-      }
-    )
+    # Create Moip Payment
   end
 
   def encryption_key

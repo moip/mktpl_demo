@@ -33,9 +33,9 @@ gem "twitter-bootstrap-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem "lograge"
 
 gem "moip2"
-gem "oauth2"
 gem "omniauth-moip", github: "moip/omniauth-moip"
 
 group :development, :test do
