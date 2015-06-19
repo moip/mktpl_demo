@@ -20,22 +20,6 @@ class CheckoutProcess
     SecureRandom.uuid
   end
 
-  def process
-    return unless valid?
-
-    # Create Moip Order
-  end
-
-  def boleto
-    # Redirect to Boleto URL
-  end
-
-  def process_cc
-    process
-
-    # Create Moip Payment
-  end
-
   def encryption_key
     api.keys.show.keys.encryption
   end
@@ -46,6 +30,26 @@ class CheckoutProcess
 
   def credit_card
     order._links.checkout.pay_credit_card.redirect_href
+  end
+
+  def process
+    return unless valid?
+
+    create_order
+  end
+
+  def create_order
+    # Create Moip Order
+  end
+
+  def boleto
+    # Redirect to Boleto URL
+  end
+
+  def process_cc
+    process
+
+    # Create Moip Credit Card Payment
   end
 
   private

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/moip/omniauth-moip.git
-  revision: cf6966833ffbcb256c6b4f3fbd9623f79f11fb09
+  revision: 4dea9b85f64cf9efe3315f297131bd8f6744922f
   specs:
     omniauth-moip (0.1.0)
       omniauth-oauth2
@@ -110,7 +110,7 @@ GEM
     moip2 (0.1.1)
       httparty
       recursive-open-struct
-    multi_json (1.11.0)
+    multi_json (1.11.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.6.2)
@@ -132,7 +132,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    rack (1.6.1)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
