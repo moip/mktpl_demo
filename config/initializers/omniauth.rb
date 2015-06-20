@@ -1,8 +1,8 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :moip, "APP-N8PEEE7AV17P", "q6zg0z8qxwmjzr8f0kt11qnvtwl8wg8",
+  provider :moip, ENV["CLIENT_ID"], ENV["CLIENT_SECRET"],
     {
       environment: :sandbox,
-      redirect_uri: "http://localhost:5000",
+      redirect_uri: "http://moipdevcommerce.herokuapp.com",
       scope: "CREATE_ORDER",
     }
 end
